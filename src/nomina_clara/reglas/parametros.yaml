@@ -1,0 +1,584 @@
+# Reglas versionadas de Nómina Clara (v0.2).
+#
+# Cada versión de una regla tiene:
+#   desde        fecha (inclusive) desde la que rige el valor
+#   valor        número, texto o tabla
+#   fuente       norma en texto corto (se imprime en cada cita)
+#   estado       "verificado"   = valor y vigencia leídos en el texto oficial (fuente primaria)
+#                                 en la fecha `consultado`, y coinciden.
+#                "por_verificar" = no se pudo leer el texto oficial en esta sesión; ver
+#                                 `url_revisar` y docs/verificacion_reglas.md.
+# Campos de trazabilidad (opcionales):
+#   norma, articulo, url (texto oficial leído), consultado (AAAA-MM-DD),
+#   cita_textual (fragmento literal corto), nota, url_revisar (dónde verificar).
+#
+# Nada de este archivo es asesoría jurídica.
+
+salario_minimo:
+  - desde: 2025-01-01
+    valor: 1423500
+    fuente: "Decreto 1572 de 2024, art. 1"
+    estado: verificado
+    norma: "Decreto 1572 de 2024"
+    articulo: "1"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=257156"
+    consultado: 2026-11-11
+    cita_textual: "Fijar a partir del primero (1) de enero de 2025 como Salario Mínimo Legal Mensual ... ($1.423.500)"
+  - desde: 2026-01-01
+    valor: 1750905
+    fuente: "Decreto 1469 de 2025 (suspendido provisionalmente) y Decreto 0159 de 2026 (transitorio)"
+    estado: por_verificar
+    norma: "Decreto 0159 de 2026"
+    nota: >-
+      No se pudo leer el texto oficial: el PDF de Presidencia del Decreto 1469 de 2025 llegó vacío
+      (escaneado) y SUIN-Juriscol bloquea la lectura automática. El valor y el número del decreto
+      transitorio salen de resultados de búsqueda, no del texto.
+    url_revisar:
+      - "https://dapre.presidencia.gov.co/normativa/normativa/DECRETO%201469%20DEL%2029%20DE%20DICIEMBRE%20DE%202025.pdf"
+      - "https://dapre.presidencia.gov.co/normativa/normativa/DECRETO%20No.%200159%20DEL%2019%20DE%20FEBRERO%20DE%202026.pdf"
+      - "https://www.suin-juriscol.gov.co/viewDocument.asp?id=30056106"
+
+auxilio_transporte:
+  - desde: 2025-01-01
+    valor: 200000
+    fuente: "Decreto 1573 de 2024"
+    estado: por_verificar
+    url_revisar: ["https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=257157"]
+    nota: "El número i=257157 es una suposición (consecutivo del Decreto 1572); buscar el Decreto 1573 de 2024 en el Gestor Normativo."
+  - desde: 2026-01-01
+    valor: 249095
+    fuente: "Decreto 1470 de 2025"
+    estado: por_verificar
+    nota: "Texto oficial no leído en esta sesión. Confirmar si la suspensión del Decreto 1469 afectó también este decreto."
+    url_revisar:
+      - "https://dapre.presidencia.gov.co/normativa/normativa/DECRETO%201470%20DEL%2029%20DE%20DICIEMBRE%20DE%202025.pdf"
+
+# Tope de salario que da derecho al auxilio de transporte (en SMMLV).
+auxilio_transporte_tope_smmlv:
+  - desde: 1990-01-01
+    valor: 2
+    fuente: "Ley 15 de 1959 y decretos anuales de auxilio de transporte"
+    estado: por_verificar
+    nota: "Los decretos anuales repiten 'hasta dos (2) veces el salario mínimo'. No leído en esta sesión."
+
+jornada_maxima_semanal:
+  - desde: 1990-01-01
+    valor: 48
+    fuente: "CST art. 161 (Ley 50 de 1990, art. 20)"
+    estado: por_verificar
+    nota: "Valor histórico, solo para fechas anteriores a la Ley 2101."
+  - &ley2101
+    desde: 2023-07-15
+    valor: 47
+    fuente: "Ley 2101 de 2021, art. 3"
+    estado: por_verificar
+    norma: "Ley 2101 de 2021"
+    articulo: "3"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=166506"
+    consultado: 2026-11-11
+    cita_textual: "Transcurridos dos (2) años a partir de la entrada en vigencia de la ley, se reducirá una (1) hora ... quedando en 47 horas semanales."
+    nota: >-
+      Valor y escalonamiento leídos en el texto oficial y coinciden. Queda por_verificar SOLO la
+      fecha: la ley "empezará a regir a partir de la fecha de su publicación" (art. 8) y fue
+      expedida el 15-jul-2021, pero el texto consultado no muestra la fecha del Diario Oficial.
+      Si se publicó ese mismo día, los escalones caen cada 15 de julio.
+  - <<: *ley2101
+    desde: 2024-07-15
+    valor: 46
+    cita_textual: "Pasados tres (3) años de la entrada en vigencia de la ley, se reducirá otra hora ... quedando en 46 horas semanales."
+  - <<: *ley2101
+    desde: 2025-07-15
+    valor: 44
+    cita_textual: "A partir del cuarto año de la entrada en vigencia de la ley, se reducirán dos (2) horas cada año hasta llegar a las cuarenta y dos (42)"
+  - <<: *ley2101
+    desde: 2026-07-15
+    valor: 42
+    cita_textual: "A partir del cuarto año de la entrada en vigencia de la ley, se reducirán dos (2) horas cada año hasta llegar a las cuarenta y dos (42)"
+
+jornada_maxima_diaria:
+  - desde: 2025-06-25
+    valor: {ordinaria: 8, flexible_minima: 4, flexible_maxima: 9}
+    fuente: "CST art. 161 modificado por la Ley 2466 de 2025, art. 11"
+    estado: verificado
+    norma: "Ley 2466 de 2025"
+    articulo: "11 (modifica el art. 161 CST)"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=260676"
+    consultado: 2026-11-11
+    cita_textual: "La duración máxima de la jornada ordinaria de trabajo es de ocho (8) horas al día ... como mínimo cuatro (4) horas continuas y máximo hasta nueve (9) horas diarias"
+    nota: "La ley rige desde su promulgación (art. 70); se usa la fecha de sanción (25-jun-2025) porque el texto consultado no trae la fecha del Diario Oficial. El valor 8 h ya regía antes."
+
+# Factor del divisor mensual del valor hora: divisor = jornada semanal × factor.
+# 30 días / 6 días laborables = 5  → 48 h × 5 = 240; 42 h × 5 = 210.
+factor_divisor_hora_mensual:
+  - desde: 1990-01-01
+    valor: 5
+    fuente: "Práctica de liquidación (48 h × 5 = 240) y conceptos del Ministerio del Trabajo sobre la Ley 2101"
+    estado: por_verificar
+    nota: >-
+      No es un valor legal expreso: la Ley 2101 y la Ley 2466 no fijan divisor (leído en ambas el
+      2026-11-11). El concepto del Ministerio del Trabajo no se pudo abrir (robots.txt del sitio).
+    url_revisar:
+      - "https://www.mintrabajo.gov.co/documents/20147/74864900/05EE2023120300000060943+++REDUCCI%C3%93N+JORNADA++-TURNOS+DE+TRABAJO.pdf/0be54879-6e2f-a25f-a0cb-29b5c0668437?t=1699972896395&download=true"
+
+inicio_nocturno:   # hora (24 h) en que empieza el trabajo nocturno; termina a las 6:00
+  - desde: 2017-07-13
+    valor: 21
+    fuente: "CST art. 160 (Ley 1846 de 2017)"
+    estado: por_verificar
+  - desde: 2025-12-25
+    valor: 19
+    fuente: "CST art. 160 modificado por la Ley 2466 de 2025, art. 10"
+    estado: verificado
+    norma: "Ley 2466 de 2025"
+    articulo: "10, parágrafo 2 (modifica el art. 160 CST)"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=260676"
+    consultado: 2026-11-11
+    cita_textual: "Trabajo nocturno es el que se realiza en el período comprendido entre las diecinueve horas (7:00 p. m.) y las seis horas del día siguiente"
+    nota: >-
+      Vigencia: "entrará en vigencia seis (6) meses después de la sanción de la presente Ley".
+      Sanción: 25-jun-2025 (encabezado "(junio 25)" y "DADA, A 25 DE JUNIO DE 2025").
+      25-jun + 6 meses = 25-dic-2025 (cómputo de meses de fecha a fecha). El autor debe confirmar
+      si se toma el 25 o el 26 de diciembre.
+
+recargo_nocturno:
+  - desde: 1990-01-01
+    valor: 0.35
+    fuente: "CST art. 168, num. 1 (subrogado por la Ley 50 de 1990, art. 24)"
+    estado: verificado
+    norma: "Ley 50 de 1990"
+    articulo: "24, num. 1 (subroga el art. 168 CST)"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=281"
+    consultado: 2026-11-11
+    cita_textual: "El trabajo nocturno, por el solo hecho de ser nocturno se remunera con un recargo del treinta y cinco por ciento (35%)"
+    nota: >-
+      Excepción: jornada de 36 h semanales del art. 20 lit. c) de la Ley 50 (turnos sucesivos), no
+      modelada. La Ley 2466 (art. 11) no cambia el porcentaje. La fecha 1990-01-01 es convencional
+      (inicio de la serie); el valor es el que se verificó.
+extra_diurna:
+  - desde: 1990-01-01
+    valor: 0.25
+    fuente: "CST art. 168, num. 2 (subrogado por la Ley 50 de 1990, art. 24)"
+    estado: verificado
+    norma: "Ley 50 de 1990"
+    articulo: "24, num. 2 (subroga el art. 168 CST)"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=281"
+    consultado: 2026-11-11
+    cita_textual: "El trabajo extra diurno se remunera con un recargo del veinticinco por ciento (25%)"
+    nota: "Fecha de inicio convencional (ver recargo_nocturno)."
+extra_nocturna:
+  - desde: 1990-01-01
+    valor: 0.75
+    fuente: "CST art. 168, num. 3 (subrogado por la Ley 50 de 1990, art. 24)"
+    estado: verificado
+    norma: "Ley 50 de 1990"
+    articulo: "24, num. 3 (subroga el art. 168 CST)"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=281"
+    consultado: 2026-11-11
+    cita_textual: "El trabajo extra nocturno se remunera con un recargo del setenta y cinco por ciento (75%)"
+    nota: "Fecha de inicio convencional (ver recargo_nocturno)."
+
+# Los recargos del art. 168 (nocturno, extra diurna, extra nocturna) no se suman entre sí:
+# la hora extra nocturna paga 75 % y REEMPLAZA el 35 % nocturno.
+recargos_168_excluyentes:
+  - desde: 1990-01-01
+    valor: true
+    fuente: "CST art. 168, num. 4 (subrogado por la Ley 50 de 1990, art. 24)"
+    estado: verificado
+    norma: "Ley 50 de 1990"
+    articulo: "24, num. 4 (subroga el art. 168 CST)"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=281"
+    consultado: 2026-11-11
+    cita_textual: "Cada uno de los recargos antedichos se produce de manera exclusiva, es decir, sin acumularlo con alguno otro."
+    nota: >-
+      "Antedichos" se refiere a los del art. 168. La SUMA del recargo dominical/festivo (art. 179)
+      con un recargo del art. 168 es un supuesto (S3) que el texto no prohíbe ni ordena.
+
+recargo_dominical_festivo:
+  - desde: 2003-01-01
+    valor: 0.75
+    fuente: "CST art. 179 (Ley 789 de 2002, art. 26)"
+    estado: por_verificar
+  - &dominical2466
+    desde: 2025-07-01
+    valor: 0.80
+    fuente: "CST art. 179 modificado por la Ley 2466 de 2025, art. 14, parágrafo transitorio"
+    estado: verificado
+    norma: "Ley 2466 de 2025"
+    articulo: "14, parágrafo transitorio (modifica el art. 179 CST)"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=260676"
+    consultado: 2026-11-11
+    cita_textual: "A partir del primero de julio de 2025, se incrementará el recargo por laborar en día de descanso obligatorio a 80%."
+    nota: "El empleador puede acogerse al 100 % desde la entrada en vigencia de la ley (no modelado; ver docs/decisiones.md)."
+  - <<: *dominical2466
+    desde: 2026-07-01
+    valor: 0.90
+    cita_textual: "A partir del primero de julio de 2026, se incrementará el recargo por laborar en día de descanso obligatorio a 90%."
+  - <<: *dominical2466
+    desde: 2027-07-01
+    valor: 1.00
+    cita_textual: "A partir del primero de julio de 2027, se dará plena aplicación al recargo por laborar día de descanso obligatorio"
+
+# Número de días de descanso obligatorio trabajados en el MES CALENDARIO a partir del cual el
+# trabajo es "habitual" (con menos, es "ocasional").
+dominical_habitual_desde_dias:
+  - desde: 2025-06-25
+    valor: 3
+    fuente: "CST art. 179, parágrafo 1, modificado por la Ley 2466 de 2025, art. 14"
+    estado: verificado
+    norma: "Ley 2466 de 2025"
+    articulo: "14, parágrafo 1 (modifica el art. 179 CST)"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=260676"
+    consultado: 2026-11-11
+    cita_textual: "ocasional ... labora hasta dos (2) días de descanso obligatorio, durante el mes calendario ... habitual ... tres (3) o más"
+    nota: >-
+      Cuenta días de descanso obligatorio (domingos y festivos, parágrafo 2), no solo domingos.
+      Antes de la Ley 2466 la Ley 789 de 2002 usaba el mismo umbral contado en domingos (no leído).
+
+# Derechos por trabajar en día de descanso obligatorio, según el caso.
+derechos_trabajo_dominical:
+  - desde: 1990-01-01
+    valor:
+      ocasional: eleccion_trabajador     # recargo en dinero O descanso compensatorio remunerado
+      habitual: recargo_y_compensatorio  # recargo en dinero Y descanso compensatorio remunerado
+    fuente: "CST arts. 180 y 181 (subrogados por la Ley 50 de 1990, arts. 30 y 31)"
+    estado: verificado
+    norma: "Ley 50 de 1990"
+    articulo: "30 (art. 180 CST) y 31 (art. 181 CST)"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=281"
+    consultado: 2026-11-11
+    cita_textual: "tiene derecho a un descanso compensatorio remunerado, o a una retribución en dinero"
+    nota: >-
+      Art. 180 (excepcional/ocasional): compensatorio O dinero, a elección del trabajador.
+      Art. 181 (habitual): compensatorio remunerado "sin perjuicio de la retribución en dinero"
+      del art. 180 (paráfrasis del texto leído). La Ley 2466 de 2025 no modificó los arts. 180-185
+      (revisado en su texto). En la jornada de 36 h (turnos sucesivos) solo hay compensatorio si
+      se trabaja en domingo: no modelado.
+
+compensatorio_plazo:
+  - desde: 1951-01-01
+    valor: semana_siguiente
+    fuente: "CST art. 183, num. 1"
+    estado: verificado
+    norma: "Código Sustantivo del Trabajo (Decreto 2663 de 1950)"
+    articulo: "183"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=199983"
+    consultado: 2026-11-11
+    nota: >-
+      Paráfrasis del texto leído (no se obtuvo la cita literal): el descanso compensatorio puede
+      darse en otro día laborable de la semana siguiente, o desde el mediodía o la 1 p. m. del
+      domingo hasta el mediodía o la 1 p. m. del lunes. Art. 185: el empleador fija con 12 h de
+      anticipación la relación del personal que trabaja el domingo. Sin notas de modificación.
+
+# ¿Los festivos que no caen en domingo generan descanso compensatorio en el caso habitual?
+compensatorio_incluye_festivos:
+  - desde: 1990-01-01
+    valor: true
+    fuente: "Lectura literal de los arts. 180-181 CST ('día de descanso obligatorio') y art. 179 par. 2"
+    estado: por_verificar
+    nota: "Supuesto S10. Hay conceptos que lo limitan a domingos; decisión del autor (ver docs/decisiones.md)."
+
+tope_horas_extra:
+  - desde: 1990-12-28
+    valor: {diario: 2, semanal: 12, sectores_exceptuados: []}
+    fuente: "Ley 50 de 1990, art. 22 (texto original)"
+    estado: por_verificar
+  - desde: 2025-06-25
+    valor: {diario: 2, semanal: 12, sectores_exceptuados: [seguridad, salud]}
+    fuente: "Ley 50 de 1990, art. 22, modificado por la Ley 2466 de 2025, art. 13"
+    estado: verificado
+    norma: "Ley 2466 de 2025"
+    articulo: "13 (modifica el art. 22 de la Ley 50 de 1990)"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=260676"
+    consultado: 2026-11-11
+    cita_textual: "En ningún caso las horas extras de trabajo, diurnas o nocturnas, podrán exceder de dos (2) horas diarias y doce (12) semanales."
+    nota: "Se exceptúa al sector de seguridad y al sector salud. Fecha: sanción (25-jun-2025); la ley rige desde su promulgación."
+
+festivo_virgen_chiquinquira:
+  - desde: 2026-01-01
+    valor: true
+    fuente: "Ley 2578 de 2026 (según prensa); demandada ante la Corte Constitucional"
+    estado: por_verificar
+    nota: >-
+      La librería `holidays` 0.108 lo incluye desde 2026 como festivo trasladable a lunes
+      (13-jul-2026, 12-jul-2027). Texto de la ley y estado de la demanda no leídos en fuente
+      primaria. Poner `valor: false` para excluirlo si la Corte lo declara inexequible.
+    url_revisar:
+      - "https://www.corteconstitucional.gov.co/secretaria/"
+
+aportes_empleador:
+  - desde: 2017-01-01
+    estado: por_verificar
+    fuente: "Ley 100 de 1993; Ley 1122 de 2007; Ley 21 de 1982; Ley 89 de 1988; Decreto 1295 de 1994"
+    nota: >-
+      Ninguna tasa se leyó en texto oficial en esta sesión. La UGPP (ABC Trabajadores a Tiempo
+      Parcial, 2026) usa pensión 16 % (12 % empleador), caja 4 % y ARL 0,522 %-6,960 %, lo que
+      coincide, pero es una guía y no el texto legal.
+    fuentes_por_rubro:
+      salud: "Ley 1122 de 2007, art. 10 (12,5 %; empleador 8,5 %)"
+      pension: "Ley 100 de 1993, art. 20 mod. Ley 797 de 2003 (16 %; empleador 12 %)"
+      caja_compensacion: "Ley 21 de 1982, art. 12"
+      icbf: "Ley 89 de 1988, art. 1"
+      sena: "Ley 21 de 1982, art. 12"
+      arl: "Decreto 1295 de 1994, art. 26 (tarifas iniciales por clase)"
+    valor:
+      salud: 0.085
+      pension: 0.12
+      caja_compensacion: 0.04
+      icbf: 0.03
+      sena: 0.02
+      arl: {I: 0.00522, II: 0.01044, III: 0.02436, IV: 0.0435, V: 0.0696}
+
+exoneracion_art_114_1:
+  - desde: 2017-01-01
+    valor: {tope_smmlv: 10, rubros: [salud, icbf, sena]}
+    fuente: "Estatuto Tributario, art. 114-1 (Ley 1819 de 2016, art. 65)"
+    estado: por_verificar
+    nota: >-
+      Texto del art. 114-1 no leído. El Concepto DIAN 7196 de 2025 (3-jun-2025, leído) transcribe el
+      antecedente (Ley 1607 de 2012, art. 25): personas jurídicas y asimiladas declarantes de renta,
+      y personas naturales que empleen dos o más trabajadores; trabajadores que devenguen
+      "individualmente considerados" menos de 10 SMMLV (la Ley 1607 decía "hasta"). El devengado se
+      mide con pagos salariales (incluye horas extra y recargos, que son salario).
+    url_revisar:
+      - "https://normograma.dian.gov.co/dian/compilacion/docs/oficio_dian_7196_2025.htm"
+      - "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=79140"
+
+ibc_maximo_smmlv:
+  - desde: 2003-01-29
+    valor: 25
+    fuente: "Ley 100 de 1993, art. 18 (mod. Ley 797 de 2003, art. 5)"
+    estado: por_verificar
+
+prestaciones_dias_por_anio:
+  - desde: 1951-01-01
+    valor: {cesantias: 30, prima: 30, vacaciones: 15, base_dias_anio: 360}
+    fuente: "CST arts. 249 (cesantías), 306 (prima) y 186 (vacaciones)"
+    estado: verificado
+    norma: "Código Sustantivo del Trabajo (Decreto 2663 de 1950)"
+    articulo: "249, 306, 186"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=199983"
+    consultado: 2026-11-11
+    cita_textual: "un mes de salario por cada año de servicios"
+    nota: >-
+      Art. 249: un mes de salario por año, proporcional. Art. 306: 30 días de salario por año, en dos
+      pagos (30-jun y primeros 20 días de diciembre). Art. 186: 15 días hábiles de vacaciones
+      remuneradas por año. La provisión mensual usa días/360 (convención contable, año comercial).
+      Se reemplazan las tasas redondeadas de v0.1 (0,0833 y 0,0417).
+
+vacaciones_base_excluye:
+  - desde: 1954-01-01
+    valor: [trabajo_dominical_festivo, horas_extra]
+    fuente: "CST art. 192 (mod. Decreto 617 de 1954)"
+    estado: verificado
+    norma: "Código Sustantivo del Trabajo"
+    articulo: "192"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=199983"
+    consultado: 2026-11-11
+    nota: >-
+      Paráfrasis del texto leído: para liquidar vacaciones se excluyen el valor del trabajo en días
+      de descanso obligatorio y el del trabajo suplementario o de horas extras. El recargo nocturno
+      ordinario SÍ entra en la base (v0.1 lo excluía: corregido).
+
+intereses_cesantias:
+  - desde: 1975-01-01
+    valor: 0.12
+    fuente: "Ley 52 de 1975, art. 1; Decreto 116 de 1976, arts. 1, 2 y 5"
+    estado: verificado
+    norma: "Decreto 116 de 1976 (reglamentario de la Ley 52 de 1975)"
+    articulo: "1, 2 y 5"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=3285"
+    consultado: 2026-11-11
+    cita_textual: "12% anual sobre los saldos"
+    nota: >-
+      Art. 1: intereses del 12 % anual sobre el saldo de cesantías; si se pagan antes del 31 de diciembre,
+      en proporción al lapso transcurrido. Art. 2: en el retiro, proporcional al tiempo desde el 31 de
+      diciembre anterior. Art. 5: si no se pagan a tiempo, se paga una suma adicional igual (doble).
+      La Ley 2466 de 2025 (art. 64) permite pactar por escrito su pago mensual; no cambia la tasa.
+
+auxilio_transporte_en_base_prestaciones:
+  - desde: 1963-01-01
+    valor: {cesantias: true, prima: true, vacaciones: false, ibc: false}
+    fuente: "Ley 1 de 1963, art. 7"
+    estado: verificado
+    norma: "Ley 1 de 1963"
+    articulo: "7"
+    url: "https://normativa.colpensiones.gov.co/compilacion/docs/ley_0001_1963.htm"
+    consultado: 2026-11-11
+    cita_textual: "Considérase incorporado al salario, para todos los efectos de liquidación de prestaciones sociales, el auxilio de transporte"
+    nota: >-
+      Texto leído en el normograma de Colpensiones (entidad pública), sin notas de modificación. Las
+      vacaciones no son una prestación social sino un descanso remunerado: por eso el auxilio no entra
+      en su base (interpretación usual; no está en el texto de la Ley 1 de 1963). Tampoco es base de
+      aportes (no es salario para el IBC).
+
+salario_minimo_proporcional:
+  - desde: 1990-12-28
+    valor: horas_efectivamente_trabajadas
+    fuente: "CST art. 147"
+    estado: verificado
+    norma: "Código Sustantivo del Trabajo"
+    articulo: "147"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=199983"
+    consultado: 2026-11-11
+    cita_textual: "en proporción al número de horas efectivamente trabajadas"
+    nota: "Aplica a jornadas inferiores a la máxima legal. Notas: Ley 50 de 1990 art. 19; Ley 278 de 1996."
+
+dominical_proporcional_jornada_incompleta:
+  - desde: 1990-12-28
+    valor: true
+    fuente: "CST art. 173, num. 5 (subrogado por la Ley 50 de 1990, art. 26)"
+    estado: verificado
+    norma: "Ley 50 de 1990"
+    articulo: "26, num. 5 (subroga el art. 173 CST)"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=281"
+    consultado: 2026-11-11
+    cita_textual: "el trabajador tendrá derecho a la remuneración del descanso dominical en proporción al tiempo laborado."
+
+auxilio_transporte_tiempo_parcial:
+  - desde: 1990-01-01
+    valor: proporcional_dias_laborados
+    fuente: "Práctica y conceptos del Ministerio del Trabajo (no leídos)"
+    estado: por_verificar
+    nota: "Decisión pendiente del autor: auxilio completo o proporcional a los días trabajados."
+
+# Cotización por semanas para dependientes que laboran menos de 30 días en el mes con salario
+# mensual inferior a 1 SMMLV (Decreto 2616 de 2013, compilado en el Decreto 1072 de 2015).
+cotizacion_por_semanas:
+  - desde: 2013-11-20
+    valor:
+      dias_menos_de: 30
+      salario_menor_a_smmlv: 1
+      tabla:            # [días desde, días hasta, semanas]
+        - [1, 7, 1]
+        - [8, 14, 2]
+        - [15, 21, 3]
+        - [22, 29, 4]
+      valor_semana_smmlv: 0.25
+      subsistemas: [pension, arl, caja_compensacion]
+      salud: no_cotiza   # régimen subsidiado o beneficiario del contributivo
+      arl_base: smmlv_mensual
+    fuente: "Decreto 2616 de 2013 (compilado en el Decreto 1072 de 2015), según la UGPP"
+    estado: verificado
+    norma: "UGPP, ABC Trabajadores a Tiempo Parcial (2026), que desarrolla el Decreto 1072 de 2015"
+    url: "https://www.ugpp.gov.co/wp-content/uploads/2026/02/ABC-Trabajadores-a-Tiempo-Parcial.pdf"
+    consultado: 2026-11-11
+    cita_textual: "Entre 1 y 7 | Una (1) ... Entre 8 y 14 | Dos (2) ... Entre 15 y 21 | Tres (3) ... Más de 21 y menos de 30 | Cuatro (4)"
+    nota: >-
+      Verificado contra la guía oficial de la UGPP (fuente de la lista aceptada), NO contra el texto
+      del decreto (Función Pública bloqueó la lectura del Decreto 2616). La guía tiene dos
+      inconsistencias: dice que la base de ARL es el SMMLV pero su ejemplo usa el IBC por días; y
+      la fila de 4 semanas trae $1.720.905 (debería ser 4 × $437.726 = $1.750.904). Se adopta
+      ARL sobre 1 SMMLV (lo que dice el texto de la guía). La fecha de inicio (20-nov-2013) no se leyó.
+    url_revisar:
+      - "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=65326"
+      - "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=72173"
+
+piso_proteccion_social:
+  - desde: 2023-06-20
+    valor: inexequible
+    fuente: "Corte Constitucional, Sentencia C-276 de 2021 (art. 193 de la Ley 1955 de 2019)"
+    estado: verificado
+    norma: "Sentencia C-276 de 2021"
+    articulo: "Resuelve, numerales segundo y tercero"
+    url: "https://www.corteconstitucional.gov.co/relatoria/2021/c-276-21.htm"
+    consultado: 2026-11-11
+    cita_textual: "INEXEQUIBLE el artículo 193 de la Ley 1955 de 2019 ... surtirá efectos a partir del 20 de junio de 2023"
+    nota: >-
+      El Decreto 1174 de 2020 reglamentaba ese artículo; el motor no modela el Piso de Protección
+      Social. La Ley 2466 de 2025, art. 34, abre cotización a tiempo parcial para microempresas y
+      hogares (pendiente de reglamentación; no modelada).
+
+
+# ----------------------------------------------------------------- liquidación del contrato (v0.3)
+
+cesantias_base_salario:
+  - desde: 1965-09-04
+    valor: {meses_sin_variacion: 3, meses_promedio: 12}
+    fuente: "CST art. 253 (mod. Decreto 2351 de 1965, art. 17)"
+    estado: verificado
+    norma: "Código Sustantivo del Trabajo"
+    articulo: "253"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=199983"
+    consultado: 2026-11-11
+    cita_textual: "el último salario mensual devengado por el trabajador, siempre que no haya tenido variación"
+    nota: >-
+      Base: último salario si no varió en los últimos tres meses; si varió, el promedio de lo devengado
+      en el último año de servicios, o en todo el tiempo si es menor de un año. No modificado por la
+      Ley 2466 de 2025 (revisado el texto de esa ley).
+
+prima_servicios:
+  - desde: 2016-07-07
+    valor: {dias_por_anio: 30, pago_primer_semestre: "06-30", pago_segundo_semestre: "12-20"}
+    fuente: "CST art. 306 (mod. Ley 1788 de 2016, art. 1)"
+    estado: verificado
+    norma: "Código Sustantivo del Trabajo"
+    articulo: "306"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=199983"
+    consultado: 2026-11-11
+    cita_textual: "la mitad máximo el 30 de junio y la otra mitad a más tardar los primeros veinte días de diciembre"
+    nota: >-
+      30 días de salario por año, por todo el semestre trabajado o proporcionalmente al tiempo trabajado.
+      Al terminar el contrato se paga la fracción del semestre en curso. Si el salario es variable, el
+      proyecto usa el promedio de lo devengado en el semestre (supuesto S19, docs/supuestos.md).
+
+vacaciones_compensacion_proporcional:
+  - desde: 2005-11-10
+    valor: true
+    fuente: "Ley 995 de 2005, art. 1 (deroga el numeral 2 del art. 189 del CST)"
+    estado: verificado
+    norma: "Ley 995 de 2005"
+    articulo: "1 y 2"
+    url: "https://normativa.colpensiones.gov.co/colpens/compilacion/docs/ley_0995_2005.htm"
+    consultado: 2026-11-11
+    cita_textual: "tendrán derecho a que estas se les reconozcan y compensen en dinero proporcionalmente por el tiempo efectivamente trabajado"
+    nota: >-
+      Desde el 10-nov-2005 ya no se exige que la fracción supere tres meses. Base: último salario
+      devengado (CST art. 189, num. 3); si es variable, promedio del último año sin dominicales ni extras
+      (art. 192). 15 días hábiles por año (art. 186) se compensan como 15 días de salario por cada 360.
+
+indemnizacion_despido:
+  - desde: 2002-12-27
+    valor:
+      umbral_smmlv: 10
+      menos_de_umbral: {primer_anio: 30, por_anio_adicional: 20}
+      umbral_o_mas: {primer_anio: 20, por_anio_adicional: 15}
+      obra_labor_minimo_dias: 15
+      regimen_transitorio_ingreso_antes_de: 1981-01-01
+    fuente: "CST art. 64 (mod. Ley 789 de 2002, art. 28)"
+    estado: verificado
+    norma: "Código Sustantivo del Trabajo"
+    articulo: "64"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=199983"
+    consultado: 2026-11-11
+    cita_textual: "veinte (20) días adicionales de salario sobre los treinta (30) básicos ... y proporcionalmente por fracción"
+    nota: >-
+      Término fijo: salarios del tiempo que falte para el plazo pactado. Obra o labor: el tiempo que falte
+      de la obra, mínimo 15 días. Indefinido: tabla según salario (menos de 10 SMMLV o 10 o más). El
+      parágrafo transitorio (10 o más años de servicio al 1-ene-1991) conserva la tabla de la Ley 50 de
+      1990 y no se calcula: el sistema avisa. No modificado por la Ley 2466 de 2025 (revisado su texto).
+
+indemnizacion_moratoria:
+  - desde: 2002-12-27
+    valor: {tope_meses: 24, tope_aplica_si_salario_mayor_a_smmlv: 1}
+    fuente: "CST art. 65 (mod. Ley 789 de 2002, art. 29)"
+    estado: verificado
+    norma: "Código Sustantivo del Trabajo"
+    articulo: "65"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=199983"
+    consultado: 2026-11-11
+    cita_textual: "una suma igual al último salario diario por cada día de retardo, hasta por veinticuatro (24) meses"
+    nota: >-
+      Desde el mes 25 se deben intereses moratorios a la tasa máxima de libre asignación certificada por la
+      Superintendencia; el sistema no los calcula (cambian cada mes) y lo avisa. Parágrafo 2: el tope de
+      24 meses solo aplica a quien devenga más de 1 SMMLV; para los demás rige el art. 65 anterior (un
+      día de salario por día de retardo, sin tope).
+
+convencion_dias_comerciales:
+  - desde: 1950-01-01
+    valor: {dias_mes: 30, dias_anio: 360}
+    fuente: "Convención de año comercial usada en liquidaciones laborales"
+    estado: por_verificar
+    nota: >-
+      La ley dice "proporcionalmente por fracción de año" sin fijar cómo contar días. El proyecto usa meses
+      de 30 días y años de 360 (día 31 = 30; último día de febrero = 30), práctica general en Colombia.
+      Supuesto S20 en docs/supuestos.md.
