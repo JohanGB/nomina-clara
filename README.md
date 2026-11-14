@@ -1,6 +1,6 @@
 # Nómina Clara
 
-**Español** · [English](README.en.md)
+**Español** · [English](README.en.md) · [Ficha en el portafolio](https://johangb.github.io/proyectos/nomina-clara.html)
 
 ![pruebas](https://github.com/JohanGB/nomina-clara/actions/workflows/pruebas.yml/badge.svg) ![Python](https://img.shields.io/badge/python-3.10%2B-3776AB) ![Licencia](https://img.shields.io/badge/licencia-MIT-green)
 
@@ -79,6 +79,12 @@ flowchart LR
   `verificado` sin URL ni fecha.
 - Cada línea de resultado lleva sus citas: `regla.cita()` es la corta y `regla.cita_completa()`
   agrega la URL y el fragmento literal.
+
+## Limitaciones
+
+- No todas las reglas están verificadas: las que no, quedan como `por_verificar` con el enlace exacto a su fuente.
+- Versión 0.3: por ahora solo la vista del empleador; la del trabajador vendrá después.
+- No es asesoría jurídica. Cada cita enlaza el texto oficial; revíselo antes de un caso real.
 
 Documentos: [verificación de reglas](docs/verificacion_reglas.md) · [supuestos](docs/supuestos.md) ·
 [decisiones](docs/decisiones.md) · [uso de IA](docs/uso_de_ia.md)

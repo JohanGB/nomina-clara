@@ -1,6 +1,8 @@
 # Nómina Clara
 
-[Español](README.md) · **English**
+[Español](README.md) · **English** · [Portfolio page](https://johangb.github.io/en/projects/nomina-clara.html)
+
+![tests](https://github.com/JohanGB/nomina-clara/actions/workflows/pruebas.yml/badge.svg) ![Python](https://img.shields.io/badge/python-3.10%2B-3776AB) ![License](https://img.shields.io/badge/license-MIT-green)
 
 Computes surcharges, overtime, compensatory rest days, total employer cost and contract
 settlement under Colombian labor law, **with every peso explained**: which rule applied, since
@@ -65,6 +67,12 @@ flowchart LR
 `verificado` means the value and validity were read from a primary source (Función Pública,
 Constitutional Court, UGPP…) on the recorded date; the loader rejects a "verified" rule without
 URL and date. Each result line carries its citations (`regla.cita()` / `regla.cita_completa()`).
+
+## Limitations
+
+- Not every rule is verified yet: those that are not stay as `por_verificar` with the exact link to their source.
+- Version 0.3: employer view only for now; the employee view comes next.
+- Not legal advice. Every citation links to the official text; check it before a real case.
 
 Docs (Spanish): [rule verification](docs/verificacion_reglas.md) · [assumptions](docs/supuestos.md) ·
 [decisions](docs/decisiones.md) · [AI usage](docs/uso_de_ia.md)
