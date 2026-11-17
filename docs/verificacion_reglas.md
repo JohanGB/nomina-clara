@@ -2,8 +2,8 @@
 
 Fechas de consulta: **2026-11-11** (primera verificación) y **2026-11-16** (revisión, ver abajo). Método: lectura del texto oficial en la web (Gestor Normativo de
 Función Pública, Corte Constitucional, UGPP) con una herramienta de consulta automática. Una regla
-queda `verificado` solo si el valor y la vigencia se leyeron en una fuente primaria de la lista
-aceptada y coinciden. Si no se pudo abrir el texto oficial, queda `por_verificar` con el enlace exacto.
+queda `verificado` solo si el valor y la vigencia se leyeron en el texto oficial o en una compilación
+institucional (Senado, Función Pública, Colpensiones) y coinciden; no se contrastaron contra el Diario Oficial. Si no se pudo abrir el texto oficial, queda `por_verificar` con el enlace exacto.
 
 ## Revisión del 16-nov-2026
 
