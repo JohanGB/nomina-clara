@@ -38,12 +38,18 @@ fecha que dice la fuente en `fuente_dice`, hasta que el autor confirme si se cor
 
 ### Las 4 discrepancias: qué difiere y cómo se resuelve
 
-| Regla | Fecha en el YAML | Fecha según la ley leída el 16-nov | Diferencia |
-|---|---|---|---|
-| `inicio_nocturno` (21 h) | 2017-07-13 | 2017-07-18: Ley 1846, Diario Oficial 50.298, art. 4 | 5 días |
-| `recargo_dominical_festivo` (75 %) | 2003-01-01 | 2002-12-27: Ley 789, Diario Oficial 45.046, art. 52; para contratos anteriores, 2003-04-01 (art. 26, par. 1) | 5 y 90 días |
-| `tope_horas_extra` (1990) | 1990-12-28 (fecha de la ley) | 1991-01-01: Ley 50, Diario Oficial 39.618, art. 117 (rige desde su publicación) | 4 días |
-| `festivo_virgen_chiquinquira` | 2026-01-01 | 2026-06-02: Ley 2578, Diario Oficial 53.510, art. 7 | 152 días; sin efecto en el cálculo |
+Todas se leyeron el 2026-11-16 en una **compilación institucional**, no en el Diario Oficial (ver «Fuentes de esta revisión»).
+El YAML no se cambia: las 4 reglas siguen `por_verificar`.
+
+| Regla (valor; norma y artículo) | Fecha en el YAML | Fecha según el texto de la ley (artículo que fija la vigencia) | Diferencia | URL de la fuente |
+|---|---|---|---|---|
+| `inicio_nocturno` (21 h; Ley 1846 de 2017, art. 1) | 2017-07-13 | **2017-07-18**: Ley 1846, Diario Oficial 50.298 de 18-jul-2017; art. 4: «rige a partir de su promulgación» | 5 días | http://www.secretariasenado.gov.co/senado/basedoc/ley_1846_2017.html |
+| `recargo_dominical_festivo` (75 %; Ley 789 de 2002, art. 26, num. 1) | 2003-01-01 | **2002-12-27**: Ley 789, Diario Oficial 45.046; art. 52. Para contratos anteriores a la ley, **2003-04-01** (art. 26, par. 1) | 5 y 90 días | http://www.secretariasenado.gov.co/senado/basedoc/ley_0789_2002.html |
+| `tope_horas_extra` (2 h diarias y 12 semanales; Ley 50 de 1990, art. 22, texto original) | 1990-12-28 (fecha de la ley) | **1991-01-01**: Diario Oficial 39.618; art. 117: «rige a partir de la fecha de su publicación» | 4 días | https://normativa.colpensiones.gov.co/compilacion/docs/ley_0050_1990.htm |
+| `festivo_virgen_chiquinquira` (festivo incluido; Ley 2578 de 2026, art. 6) | 2026-01-01 | **2026-06-02**: ley del 1-jun-2026, Diario Oficial 53.510 de 2-jun-2026; art. 7: rige desde su promulgación | 152 días; sin efecto en el cálculo | http://www.secretariasenado.gov.co/senado/basedoc/ley_2578_2026.html |
+
+En `tope_horas_extra`, Función Pública escribe «1 de enero de 1990», que no puede ser porque la ley es de diciembre de 1990;
+por eso se usó el normograma de Colpensiones.
 
 **Hipótesis del autor (causa probable):** diferencias de un día según se cuente la vigencia (25 frente a 26 de junio
 y de diciembre de 2025). **Los datos de esta revisión no la respaldan para estas 4 reglas:** ninguna difiere en un día
