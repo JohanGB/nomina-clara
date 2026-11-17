@@ -74,9 +74,9 @@ flowchart LR
 
 ## Trazabilidad
 - Las reglas son **datos versionados**, no código. Ningún valor legal está escrito en Python.
-- `verificado` significa que el valor y la vigencia se leyeron en una fuente primaria (Función
-  Pública, Corte Constitucional, UGPP...) en la fecha `consultado`. El cargador rechaza una regla
-  `verificado` sin URL ni fecha.
+- `verificado` significa que el valor y la vigencia se leyeron en el texto oficial o en una compilación
+  institucional (Senado, Función Pública, Colpensiones) en la fecha `consultado`; **no se contrastaron
+  contra el Diario Oficial**. El cargador rechaza una regla `verificado` sin URL ni fecha.
 - Cada línea de resultado lleva sus citas: `regla.cita()` es la corta y `regla.cita_completa()`
   agrega la URL y el fragmento literal.
 

@@ -64,9 +64,9 @@ flowchart LR
 
 ## Traceability
 
-`verificado` means the value and validity were read from a primary source (Función Pública,
-Constitutional Court, UGPP…) on the recorded date; the loader rejects a "verified" rule without
-URL and date. Each result line carries its citations (`regla.cita()` / `regla.cita_completa()`).
+`verificado` means the value and validity were read in the official text or in an institutional
+compilation (Senate, Función Pública, Colpensiones) on the recorded date; they were **not checked
+against the Diario Oficial**. The loader rejects a "verified" rule without URL and date. Each result line carries its citations (`regla.cita()` / `regla.cita_completa()`).
 
 ## Limitations
 
