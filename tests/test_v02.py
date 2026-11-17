@@ -1,7 +1,7 @@
 """Pruebas de v0.2: trazabilidad, correcciones, compensatorio, tiempo parcial y propiedades.
 
 Convención: cada caso resuelto a mano muestra el cálculo esperado en el comentario.
-SMMLV 2026 = 1.750.905 (por verificar); jornada desde 15-jul-2026 = 42 h; divisor = 210.
+SMMLV 2026 = 1.750.905 (verificado el 2026-11-16); jornada desde 15-jul-2026 = 42 h; divisor = 210.
 """
 import datetime as dt
 import random
@@ -34,7 +34,8 @@ def test_toda_regla_verificada_tiene_url_y_fecha_de_consulta():
         for r in versiones(n):
             assert r.estado in ("verificado", "por_verificar")
             if r.verificada:
-                assert r.url and r.url.startswith("http") and r.consultado == dt.date(2026, 11, 11)
+                # Fecha de consulta: 11-nov-2026 (primera verificación) o posterior (revisiones).
+                assert r.url and r.url.startswith("http") and r.consultado >= dt.date(2026, 11, 11)
 
 
 def test_cita_expone_estado_y_fecha_de_consulta():

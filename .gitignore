@@ -1,0 +1,18 @@
+# Cachés y entornos
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.hypothesis/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+
+# Herramientas locales
+.playwright-mcp/
+
+# Instrucciones privadas de trabajo (solo en el disco del autor)
+PROMPT_MAESTRO.md
