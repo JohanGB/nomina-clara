@@ -85,7 +85,8 @@ flowchart LR
 - No todas las reglas están verificadas: las que no, quedan como `por_verificar` con el enlace exacto a su fuente.
 - Revisión del 16-nov-2026: de las 36 reglas, 8 siguen `por_verificar`. En 4 de ellas (inicio nocturno, recargo dominical y festivo,
   tope de horas extra y festivo de la Virgen de Chiquinquirá) el texto oficial se leyó y **no coincide con la fecha de vigencia** del YAML;
-  el YAML no se ha cambiado hasta que el autor confirme. `docs/verificacion_reglas.md` conserva la verificación del 11-nov y aún no recoge esta revisión.
+  en los 4 el valor coincide y solo difiere la fecha. El YAML no se ha cambiado hasta que el autor confirme; el detalle está en
+  [`docs/verificacion_reglas.md`](docs/verificacion_reglas.md) (revisión del 16-nov-2026).
 - Versión 0.3: por ahora solo la vista del empleador; la del trabajador vendrá después.
 - No es asesoría jurídica. Cada cita enlaza el texto oficial; revíselo antes de un caso real.
 
