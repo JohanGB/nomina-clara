@@ -36,6 +36,37 @@ tasas de aportes del empleador; exoneración del art. 114-1 del ET; y el tope de
 Las **4 discrepancias son solo de fecha de vigencia**. Se dejaron `por_verificar`, con `revision: discrepante` y la
 fecha que dice la fuente en `fuente_dice`, hasta que el autor confirme si se corrige el YAML.
 
+### Las 4 discrepancias: qué difiere y cómo se resuelve
+
+| Regla | Fecha en el YAML | Fecha según la ley leída el 16-nov | Diferencia |
+|---|---|---|---|
+| `inicio_nocturno` (21 h) | 2017-07-13 | 2017-07-18: Ley 1846, Diario Oficial 50.298, art. 4 | 5 días |
+| `recargo_dominical_festivo` (75 %) | 2003-01-01 | 2002-12-27: Ley 789, Diario Oficial 45.046, art. 52; para contratos anteriores, 2003-04-01 (art. 26, par. 1) | 5 y 90 días |
+| `tope_horas_extra` (1990) | 1990-12-28 (fecha de la ley) | 1991-01-01: Ley 50, Diario Oficial 39.618, art. 117 (rige desde su publicación) | 4 días |
+| `festivo_virgen_chiquinquira` | 2026-01-01 | 2026-06-02: Ley 2578, Diario Oficial 53.510, art. 7 | 152 días; sin efecto en el cálculo |
+
+**Hipótesis del autor (causa probable):** diferencias de un día según se cuente la vigencia (25 frente a 26 de junio
+y de diciembre de 2025). **Los datos de esta revisión no la respaldan para estas 4 reglas:** ninguna difiere en un día
+(las diferencias son de 4, 5, 90 y 152 días). Esa duda de un día sí existe, pero en otra entrada que no es una de las 4:
+el inicio de la jornada nocturna a las 7 p. m. de la Ley 2466 (`inicio_nocturno` de las 19 h, 2025-12-25; sanción 25-jun-2025),
+que figura como verificada y está abierta en el punto 6 de la lista de abajo.
+
+**Criterio de resolución, para las 4 discrepancias y para esa duda:** el texto de la ley y la fecha de su publicación en el
+Diario Oficial; no la prensa. Hasta entonces las 4 siguen `por_verificar` y el YAML no se cambia.
+
+### Festivo de la Ley 2578 de 2026 (Virgen de Chiquinquirá)
+
+- **Registro:** festivo **vigente**: 9 de julio, trasladable al lunes siguiente según la Ley 51 de 1983 (Ley Emiliani);
+  en 2026 cayó en jueves y se trasladó al **lunes 13 de julio**. En el YAML sigue como `valor: true` con estado `por_verificar`
+  (por la fecha de vigencia, ver arriba).
+- **Nota:** demandado ante la Corte Constitucional; estado por confirmar.
+- **Fuentes, para que no se confundan:**
+  - *Primera entrada (11-nov):* **prensa**, no el texto oficial («Ley 2578 de 2026, según prensa»).
+  - *16-nov:* se leyó el texto de la ley (arts. 6 y 7) en la compilación del Senado; no se contrastó contra el Diario Oficial.
+  - *La demanda:* se conoce **solo por prensa** (junio y julio de 2026). El buscador de procesos de la Corte no devolvió
+    resultados para «2578» ni «Chiquinquirá» el 16-nov, y la compilación del Senado no trae nota de jurisprudencia.
+- Si la Corte la declara inexequible, poner `valor: false` en el YAML.
+
 **Fuentes de esta revisión.** Se leyeron en compilaciones de entidades públicas, no en el Gestor Normativo de Función
 Pública: el normograma de Colpensiones (Decretos 1469 de 2025, 1573 de 2024 y 1470 de 2025; Ley 50 de 1990) y las
 compilaciones del Senado (Leyes 2101, 1846, 789, 2578, 100 y el Estatuto Tributario). Cada URL y cita textual está en el YAML.
@@ -143,17 +174,19 @@ Actualizado el 16-nov-2026. Lo resuelto en la revisión (salario mínimo 2026 y 
 art. 114-1) salió de esta lista.
 
 1. **Las 4 fechas discrepantes** (`inicio_nocturno`, `recargo_dominical_festivo`, `tope_horas_extra` y
-   `festivo_virgen_chiquinquira`): confirmar si se corrige el YAML con la fecha de la fuente. Hasta entonces siguen `por_verificar`.
+   `festivo_virgen_chiquinquira`): resolver con el texto de la ley y la fecha del Diario Oficial (no con prensa) y confirmar si se corrige
+   el YAML. Hasta entonces siguen `por_verificar`.
 2. **Compilaciones como fuente primaria:** decidir si el normograma de Colpensiones y las compilaciones del Senado
    valen como fuente de `verificado`, o si se exige el Gestor Normativo de Función Pública.
-3. **Festivo de la Virgen de Chiquinquirá:** estado de la demanda contra el art. 6 de la Ley 2578 de 2026 (la Corte no devolvió resultados
-   el 16-nov). Si se declara inexequible, poner `valor: false`.
+3. **Festivo de la Virgen de Chiquinquirá:** estado de la demanda contra el art. 6 de la Ley 2578 de 2026. La demanda se conoce solo por prensa
+   y la Corte no devolvió resultados el 16-nov. Se resuelve con la providencia de la Corte, no con prensa. Si se declara inexequible, poner `valor: false`.
 4. **Providencia del Consejo de Estado** (exp. 11001-03-25-000-2026-00004-00) sobre el Decreto 1469: no se leyó; la nota de
    vigencia del normograma dice que la suspensión se levantó el 9-jul-2026.
 5. **Decreto 2616 de 2013, texto oficial:** tabla de semanas y base de la ARL (¿1 SMMLV o IBC por días?):
    https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=65326 y su compilación en el Decreto 1072 de 2015:
    https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=72173
 6. **Inicio de la jornada nocturna a las 7 p. m.: ¿25 o 26 de diciembre de 2025?** El texto dice "seis (6) meses después de la sanción" (sanción: 25-jun-2025).
+   Es la duda de un día; se resuelve con el texto de la ley y la fecha del Diario Oficial.
 7. **Ley 2381 de 2024 (reforma pensional):** la Ley 2466, art. 33, remite a sus arts. 27 y 28 para la cotización a tiempo parcial del servicio doméstico. No se revisó su estado.
 8. **Ley 1 de 1963 y Ley 995 de 2005 en una fuente de la lista principal** (se leyeron en el normograma de
    Colpensiones, entidad pública, porque el Gestor Normativo y el Senado no abrieron):
