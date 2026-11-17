@@ -11,6 +11,12 @@
 # Campos de trazabilidad (opcionales):
 #   norma, articulo, url (texto oficial leído), consultado (AAAA-MM-DD),
 #   cita_textual (fragmento literal corto), nota, url_revisar (dónde verificar).
+# Campos de revisión (2026-11-16; el motor no los lee):
+#   revision: discrepante  = el texto oficial se leyó y NO coincide con `valor` o con `desde`.
+#                            El YAML no se cambia hasta que el autor confirme (docs/estado.md).
+#                            El motor solo acepta dos estados, así que la regla sigue `por_verificar`.
+#   fuente_dice            = lo que dice la fuente, para compararlo con el YAML.
+#   *_por_rubro, url_otras = trazabilidad adicional cuando una regla tiene varias fuentes.
 #
 # Nada de este archivo es asesoría jurídica.
 
@@ -26,74 +32,115 @@ salario_minimo:
     cita_textual: "Fijar a partir del primero (1) de enero de 2025 como Salario Mínimo Legal Mensual ... ($1.423.500)"
   - desde: 2026-01-01
     valor: 1750905
-    fuente: "Decreto 1469 de 2025 (suspendido provisionalmente) y Decreto 0159 de 2026 (transitorio)"
-    estado: por_verificar
-    norma: "Decreto 0159 de 2026"
+    fuente: "Decreto 1469 de 2025, art. 1 (y Decreto 0159 de 2026, transitorio, con el mismo valor)"
+    estado: verificado
+    norma: "Decreto 1469 de 2025"
+    articulo: "1 (vigencia: art. 2)"
+    url: "https://normativa.colpensiones.gov.co/compilacion/docs/decreto_1469_2025.htm"
+    consultado: 2026-11-16
+    cita_textual: "la suma de UN MILLÓN SETECIENTOS CINCUENTA MIL NOVECIENTOS CINCO PESOS ($1.750.905)"
     nota: >-
-      No se pudo leer el texto oficial: el PDF de Presidencia del Decreto 1469 de 2025 llegó vacío
-      (escaneado) y SUIN-Juriscol bloquea la lectura automática. El valor y el número del decreto
-      transitorio salen de resultados de búsqueda, no del texto.
-    url_revisar:
-      - "https://dapre.presidencia.gov.co/normativa/normativa/DECRETO%201469%20DEL%2029%20DE%20DICIEMBRE%20DE%202025.pdf"
-      - "https://dapre.presidencia.gov.co/normativa/normativa/DECRETO%20No.%200159%20DEL%2019%20DE%20FEBRERO%20DE%202026.pdf"
-      - "https://www.suin-juriscol.gov.co/viewDocument.asp?id=30056106"
+      Diario Oficial 53.350 de 29-dic-2025; rige desde el 1-ene-2026 (art. 2). El Consejo de Estado,
+      Sección Segunda (exp. 11001-03-25-000-2026-00004-00), lo suspendió provisionalmente por auto
+      de 12-feb-2026 y ordenó un decreto transitorio: el Decreto 0159 de 2026 (Diario Oficial 53.403
+      de 19-feb-2026) fijó "transitoriamente" el mismo valor desde su publicación. Según la nota de
+      vigencia del normograma, la suspensión fue LEVANTADA por providencia de 9-jul-2026 y el
+      Decreto 0159 "cumplió su objeto". El valor es $1.750.905 en todo 2026 por una u otra norma.
+      No se leyó la providencia del Consejo de Estado ni se sabe si ya hay fallo de fondo sobre la
+      nulidad. Leído en el normograma de Colpensiones (entidad pública), no en Función Pública.
+    url_otras:
+      - "https://normativa.colpensiones.gov.co/compilacion/docs/decreto_0159_2026.htm"
 
 auxilio_transporte:
   - desde: 2025-01-01
     valor: 200000
-    fuente: "Decreto 1573 de 2024"
-    estado: por_verificar
-    url_revisar: ["https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=257157"]
-    nota: "El número i=257157 es una suposición (consecutivo del Decreto 1572); buscar el Decreto 1573 de 2024 en el Gestor Normativo."
+    fuente: "Decreto 1573 de 2024, art. 1"
+    estado: verificado
+    norma: "Decreto 1573 de 2024"
+    articulo: "1 (vigencia: art. 2)"
+    url: "https://normativa.colpensiones.gov.co/compilacion/docs/decreto_1573_2024.htm"
+    consultado: 2026-11-16
+    cita_textual: "en la suma de doscientos mil ($200.000) pesos"
+    nota: >-
+      Diario Oficial 52.980 de 24-dic-2024; rige desde el 1-ene-2025 (art. 2). Derogado por el
+      Decreto 1470 de 2025, art. 2. Leído en el normograma de Colpensiones (entidad pública).
   - desde: 2026-01-01
     valor: 249095
-    fuente: "Decreto 1470 de 2025"
-    estado: por_verificar
-    nota: "Texto oficial no leído en esta sesión. Confirmar si la suspensión del Decreto 1469 afectó también este decreto."
-    url_revisar:
-      - "https://dapre.presidencia.gov.co/normativa/normativa/DECRETO%201470%20DEL%2029%20DE%20DICIEMBRE%20DE%202025.pdf"
+    fuente: "Decreto 1470 de 2025, art. 1"
+    estado: verificado
+    norma: "Decreto 1470 de 2025"
+    articulo: "1 (vigencia: art. 2)"
+    url: "https://normativa.colpensiones.gov.co/compilacion/docs/decreto_1470_2025.htm"
+    consultado: 2026-11-16
+    cita_textual: "en la suma de DOSCIENTOS CUARENTA Y NUEVE MIL NOVENTA Y CINCO PESOS ($249.095)"
+    nota: >-
+      Diario Oficial 53.350 de 29-dic-2025; rige desde el 1-ene-2026 (art. 2). La suspensión del
+      Consejo de Estado recayó sobre el Decreto 1469 (salario mínimo); el texto del Decreto 1470 no
+      trae nota de suspensión. Segunda lectura coincidente en SISJUR (Alcaldía de Bogotá).
+    url_otras:
+      - "https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?dt=S&i=191926"
 
 # Tope de salario que da derecho al auxilio de transporte (en SMMLV).
 auxilio_transporte_tope_smmlv:
   - desde: 1990-01-01
     valor: 2
-    fuente: "Ley 15 de 1959 y decretos anuales de auxilio de transporte"
-    estado: por_verificar
-    nota: "Los decretos anuales repiten 'hasta dos (2) veces el salario mínimo'. No leído en esta sesión."
+    fuente: "Decretos anuales de auxilio de transporte (Decreto 1573 de 2024 y Decreto 1470 de 2025, art. 1)"
+    estado: verificado
+    norma: "Decreto 1470 de 2025 y Decreto 1573 de 2024"
+    articulo: "1"
+    url: "https://normativa.colpensiones.gov.co/compilacion/docs/decreto_1470_2025.htm"
+    consultado: 2026-11-16
+    cita_textual: "que devengan hasta dos (2) veces el Salario Mínimo Legal Mensual Vigente"
+    nota: >-
+      Verificado en los decretos de 2025 y 2026, que usan la misma frase. La fecha 1990-01-01 es
+      convencional (inicio de la serie): no se leyeron la Ley 15 de 1959 ni los decretos de años
+      anteriores.
 
 jornada_maxima_semanal:
   - desde: 1990-01-01
     valor: 48
     fuente: "CST art. 161 (Ley 50 de 1990, art. 20)"
-    estado: por_verificar
-    nota: "Valor histórico, solo para fechas anteriores a la Ley 2101."
+    estado: verificado
+    norma: "Ley 50 de 1990"
+    articulo: "20 (subroga el art. 161 CST)"
+    url: "https://normativa.colpensiones.gov.co/compilacion/docs/ley_0050_1990.htm"
+    consultado: 2026-11-16
+    cita_textual: "ocho (8) horas al día y cuarenta y ocho (48) a la semana"
+    nota: >-
+      Valor histórico, solo para fechas anteriores a la Ley 2101. La fecha 1990-01-01 es
+      convencional (inicio de la serie): la Ley 50 rige desde su publicación (Diario Oficial 39.618
+      de 1-ene-1991); antes, el mismo límite de 48 h venía de la Ley 6 de 1981, art. 1 (según la
+      "legislación anterior" del art. 161 en la compilación del Senado).
   - &ley2101
     desde: 2023-07-15
     valor: 47
     fuente: "Ley 2101 de 2021, art. 3"
-    estado: por_verificar
+    estado: verificado
     norma: "Ley 2101 de 2021"
-    articulo: "3"
-    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=166506"
-    consultado: 2026-11-11
-    cita_textual: "Transcurridos dos (2) años a partir de la entrada en vigencia de la ley, se reducirá una (1) hora ... quedando en 47 horas semanales."
+    articulo: "3 (vigencia: art. 8)"
+    url: "http://www.secretariasenado.gov.co/senado/basedoc/ley_2101_2021.html"
+    consultado: 2026-11-16
+    cita_textual: "quedando en 47 horas semanales"
     nota: >-
-      Valor y escalonamiento leídos en el texto oficial y coinciden. Queda por_verificar SOLO la
-      fecha: la ley "empezará a regir a partir de la fecha de su publicación" (art. 8) y fue
-      expedida el 15-jul-2021, pero el texto consultado no muestra la fecha del Diario Oficial.
-      Si se publicó ese mismo día, los escalones caen cada 15 de julio.
+      Publicada en el Diario Oficial 51.736 de 15-jul-2021 y "empezará a regir a partir de la fecha
+      de su publicación" (art. 8): los escalones del art. 3 caen cada 15 de julio (2023: 47 h;
+      2024: 46 h; 2025: 44 h; 2026: 42 h). El concepto del Ministerio del Trabajo con radicado
+      05EE2023120300000060943 usa las mismas fechas ("A partir del 15 de julio de 2026 ... 42 horas
+      semanales"). La Ley 2466 de 2025, art. 11, reescribe el art. 161 CST con 42 h y remite a la
+      gradualidad del art. 3 de la Ley 2101. Texto leído también en Función Pública
+      (norma_pdf.php?i=166506) el 2026-11-11.
   - <<: *ley2101
     desde: 2024-07-15
     valor: 46
-    cita_textual: "Pasados tres (3) años de la entrada en vigencia de la ley, se reducirá otra hora ... quedando en 46 horas semanales."
+    cita_textual: "quedando en 46 horas semanales"
   - <<: *ley2101
     desde: 2025-07-15
     valor: 44
-    cita_textual: "A partir del cuarto año de la entrada en vigencia de la ley, se reducirán dos (2) horas cada año hasta llegar a las cuarenta y dos (42)"
+    cita_textual: "dos (2) horas cada año hasta llegar a las cuarenta y dos (42)"
   - <<: *ley2101
     desde: 2026-07-15
     valor: 42
-    cita_textual: "A partir del cuarto año de la entrada en vigencia de la ley, se reducirán dos (2) horas cada año hasta llegar a las cuarenta y dos (42)"
+    cita_textual: "dos (2) horas cada año hasta llegar a las cuarenta y dos (42)"
 
 jornada_maxima_diaria:
   - desde: 2025-06-25
@@ -116,15 +163,29 @@ factor_divisor_hora_mensual:
     estado: por_verificar
     nota: >-
       No es un valor legal expreso: la Ley 2101 y la Ley 2466 no fijan divisor (leído en ambas el
-      2026-11-11). El concepto del Ministerio del Trabajo no se pudo abrir (robots.txt del sitio).
+      2026-11-11). El concepto del Ministerio del Trabajo de `url_revisar` (13 páginas) se leyó el
+      2026-11-16: trata la reducción de la jornada y los turnos y NO menciona divisor ni valor de
+      la hora. Sigue siendo una convención de liquidación (supuesto S1), sin fuente que la fije.
     url_revisar:
       - "https://www.mintrabajo.gov.co/documents/20147/74864900/05EE2023120300000060943+++REDUCCI%C3%93N+JORNADA++-TURNOS+DE+TRABAJO.pdf/0be54879-6e2f-a25f-a0cb-29b5c0668437?t=1699972896395&download=true"
 
 inicio_nocturno:   # hora (24 h) en que empieza el trabajo nocturno; termina a las 6:00
   - desde: 2017-07-13
     valor: 21
-    fuente: "CST art. 160 (Ley 1846 de 2017)"
+    fuente: "CST art. 160 (Ley 1846 de 2017, art. 1)"
     estado: por_verificar
+    revision: discrepante
+    fuente_dice: {desde: 2017-07-18}
+    norma: "Ley 1846 de 2017"
+    articulo: "1 (vigencia: art. 4)"
+    url: "http://www.secretariasenado.gov.co/senado/basedoc/ley_1846_2017.html"
+    consultado: 2026-11-16
+    cita_textual: "entre las veintiún horas (9:00 p. m.) y las seis horas (6:00 a. m.)"
+    nota: >-
+      El valor (21 h) coincide. FECHA DISCREPANTE: el YAML dice 2017-07-13; la ley es del
+      18-jul-2017, se publicó en el Diario Oficial 50.298 de 18-jul-2017 y "rige a partir de su
+      promulgación" (art. 4). No se cambia hasta que el autor confirme. Antes regía el inicio a las
+      22 h (Ley 789 de 2002, art. 25), versión que el YAML no tiene.
   - desde: 2025-12-25
     valor: 19
     fuente: "CST art. 160 modificado por la Ley 2466 de 2025, art. 10"
@@ -198,6 +259,19 @@ recargo_dominical_festivo:
     valor: 0.75
     fuente: "CST art. 179 (Ley 789 de 2002, art. 26)"
     estado: por_verificar
+    revision: discrepante
+    fuente_dice: {desde_contratos_nuevos: 2002-12-27, desde_contratos_anteriores: 2003-04-01}
+    norma: "Ley 789 de 2002"
+    articulo: "26, num. 1 (vigencia: art. 52 y art. 26, par. 1)"
+    url: "http://www.secretariasenado.gov.co/senado/basedoc/ley_0789_2002.html"
+    consultado: 2026-11-16
+    cita_textual: "con un recargo del setenta y cinco por ciento (75%) sobre el salario ordinario"
+    nota: >-
+      El valor (75 %) coincide. FECHA DISCREPANTE: el YAML dice 2003-01-01; la ley se publicó en el
+      Diario Oficial 45.046 de 27-dic-2002 y rige desde su publicación (art. 52), pero para los
+      contratos celebrados antes de la ley los arts. 25 y 26 se aplazaron "hasta el 1o. de abril del
+      año 2003" (art. 26, par. 1). Ninguna de las dos fechas es 2003-01-01. No se cambia hasta que
+      el autor confirme. Solo afecta fechas anteriores al 1-jul-2025.
   - &dominical2466
     desde: 2025-07-01
     valor: 0.80
@@ -275,13 +349,36 @@ compensatorio_incluye_festivos:
     valor: true
     fuente: "Lectura literal de los arts. 180-181 CST ('día de descanso obligatorio') y art. 179 par. 2"
     estado: por_verificar
-    nota: "Supuesto S10. Hay conceptos que lo limitan a domingos; decisión del autor (ver docs/decisiones.md)."
+    nota: >-
+      Supuesto S10; decisión del autor (ver docs/decisiones.md). Textos leídos el 2026-11-16 en la
+      compilación del Senado (CST, arts. 179 a 183): no resuelven la duda. Los arts. 180 y 181 dan
+      el compensatorio a quien labora en "día de descanso obligatorio"; el art. 179, num. 1,
+      nombra por separado "día de descanso obligatorio, o días de fiesta", y su par. 3 presume que
+      el día de descanso obligatorio es el domingo; el art. 183 habla de "descanso semanal
+      compensatorio". El Título VII ("Descansos obligatorios") cubre domingos y festivos. No se
+      encontró concepto del Ministerio del Trabajo. Ni verificado ni contradicho.
+    url_revisar:
+      - "http://www.secretariasenado.gov.co/senado/basedoc/codigo_sustantivo_trabajo_pr006.html"
 
 tope_horas_extra:
   - desde: 1990-12-28
     valor: {diario: 2, semanal: 12, sectores_exceptuados: []}
     fuente: "Ley 50 de 1990, art. 22 (texto original)"
     estado: por_verificar
+    revision: discrepante
+    fuente_dice: {desde: 1991-01-01}
+    norma: "Ley 50 de 1990"
+    articulo: "22, texto original (vigencia: art. 117)"
+    url: "https://normativa.colpensiones.gov.co/compilacion/docs/ley_0050_1990.htm"
+    consultado: 2026-11-16
+    cita_textual: "podrán exceder de dos (2) horas diarias y doce (12) semanales"
+    nota: >-
+      Los valores (2 h y 12 h) coinciden. FECHA DISCREPANTE: 1990-12-28 es la fecha de la ley, pero
+      "rige a partir de la fecha de su publicación" (art. 117) y se publicó en el Diario Oficial
+      39.618 de 1-ene-1991 (normograma de Colpensiones; Función Pública escribe "1 de enero de
+      1990", que no puede ser porque la ley es de diciembre de 1990). No se cambia hasta que el
+      autor confirme. El texto original añade que con jornada ampliada a 10 h por acuerdo no se
+      pueden laborar extras ese día (no modelado).
   - desde: 2025-06-25
     valor: {diario: 2, semanal: 12, sectores_exceptuados: [seguridad, salud]}
     fuente: "Ley 50 de 1990, art. 22, modificado por la Ley 2466 de 2025, art. 13"
@@ -296,30 +393,71 @@ tope_horas_extra:
 festivo_virgen_chiquinquira:
   - desde: 2026-01-01
     valor: true
-    fuente: "Ley 2578 de 2026 (según prensa); demandada ante la Corte Constitucional"
+    fuente: "Ley 2578 de 2026, art. 6; demandada ante la Corte Constitucional"
     estado: por_verificar
+    revision: discrepante
+    fuente_dice: {desde: 2026-06-02}
+    norma: "Ley 2578 de 2026"
+    articulo: "6 (vigencia: art. 7)"
+    url: "http://www.secretariasenado.gov.co/senado/basedoc/ley_2578_2026.html"
+    consultado: 2026-11-16
+    cita_textual: "el 9 de julio de cada año, como día festivo de carácter nacional"
     nota: >-
-      La librería `holidays` 0.108 lo incluye desde 2026 como festivo trasladable a lunes
-      (13-jul-2026, 12-jul-2027). Texto de la ley y estado de la demanda no leídos en fuente
-      primaria. Poner `valor: false` para excluirlo si la Corte lo declara inexequible.
+      El valor (festivo incluido) coincide: el art. 6 declara festivo nacional el 9 de julio y
+      ordena aplicar la Ley 51 de 1983 para fijar el día de descanso; el 9-jul-2026 fue jueves, así
+      que se trasladó al lunes 13-jul-2026 (igual que la librería `holidays` 0.108). FECHA
+      DISCREPANTE, sin efecto en el cálculo: el YAML dice 2026-01-01; la ley es del 1-jun-2026, se
+      publicó en el Diario Oficial 53.510 de 2-jun-2026 y rige desde su promulgación (art. 7). El
+      motor consulta esta regla al 31 de diciembre de cada año, así que el resultado es el mismo.
+      DEMANDA: la prensa de junio y julio de 2026 informa una demanda contra el art. 6; NO se pudo
+      confirmar su estado en la Corte Constitucional (su buscador de procesos no devolvió
+      resultados para "2578" ni "Chiquinquirá" el 2026-11-16). La compilación del Senado,
+      actualizada al 31-oct-2026, no trae nota de jurisprudencia sobre esta ley. Poner
+      `valor: false` para excluirlo si la Corte lo declara inexequible.
     url_revisar:
-      - "https://www.corteconstitucional.gov.co/secretaria/"
+      - "https://www.corteconstitucional.gov.co/secretaria/consulta-y-tramite-de-procesos/constitucionalidad/buscador-de-procesos-de-constitucionalidad"
 
 aportes_empleador:
   - desde: 2017-01-01
-    estado: por_verificar
-    fuente: "Ley 100 de 1993; Ley 1122 de 2007; Ley 21 de 1982; Ley 89 de 1988; Decreto 1295 de 1994"
+    estado: verificado
+    fuente: "Ley 100 de 1993; Ley 1122 de 2007; Decreto 4982 de 2007; Ley 21 de 1982; Ley 89 de 1988; Decreto 1772 de 1994"
+    norma: "Ley 1122 de 2007, Ley 100 de 1993, Decreto 4982 de 2007, Ley 21 de 1982, Ley 89 de 1988 y Decreto 1772 de 1994"
+    articulo: "ver fuentes_por_rubro"
+    url: "http://www.secretariasenado.gov.co/senado/basedoc/ley_0100_1993.html"
+    consultado: 2026-11-16
+    cita_textual: "Los empleadores pagarán el 75% de la cotización total"
     nota: >-
-      Ninguna tasa se leyó en texto oficial en esta sesión. La UGPP (ABC Trabajadores a Tiempo
-      Parcial, 2026) usa pensión 16 % (12 % empleador), caja 4 % y ARL 0,522 %-6,960 %, lo que
-      coincide, pero es una guía y no el texto legal.
+      Las seis tasas coinciden con el texto leído el 2026-11-16 (ver citas_por_rubro). La pensión
+      del 12 % no está escrita así: sale del 75 % a cargo del empleador (Ley 100, art. 20) sobre el
+      16 % total (Decreto 4982 de 2007, art. 1). CORRECCIÓN DE FUENTE (no de valor): las tarifas de
+      ARL no están en el Decreto 1295 de 1994, art. 26 (que solo enumera las cinco clases de
+      riesgo), sino en la tabla del Decreto 1772 de 1994, art. 13, que el art. 27 del Decreto 1295
+      manda expedir; el YAML usa el "valor inicial" de cada clase. `costo_empleador.py` todavía
+      imprime la cita anterior (no se tocó el motor). La fecha 2017-01-01 es convencional (inicio
+      de la serie): todas las normas son anteriores. La compilación del Senado advierte que la Ley
+      100 no incorpora la Ley 2381 de 2024 (reforma pensional) "hasta tanto entre en vigor". No se
+      revisó si las tasas siguen compiladas igual en los Decretos 1072 de 2015 y 1833 de 2016.
     fuentes_por_rubro:
       salud: "Ley 1122 de 2007, art. 10 (12,5 %; empleador 8,5 %)"
-      pension: "Ley 100 de 1993, art. 20 mod. Ley 797 de 2003 (16 %; empleador 12 %)"
-      caja_compensacion: "Ley 21 de 1982, art. 12"
+      pension: "Ley 100 de 1993, art. 20 mod. Ley 797 de 2003, art. 7 (empleador 75 %) y Decreto 4982 de 2007, art. 1 (16 %)"
+      caja_compensacion: "Ley 21 de 1982, art. 12, num. 1"
       icbf: "Ley 89 de 1988, art. 1"
-      sena: "Ley 21 de 1982, art. 12"
-      arl: "Decreto 1295 de 1994, art. 26 (tarifas iniciales por clase)"
+      sena: "Ley 21 de 1982, art. 12, num. 2"
+      arl: "Decreto 1772 de 1994, art. 13 (valor inicial por clase de riesgo)"
+    citas_por_rubro:
+      salud: "La cotización a cargo del empleador será del 8.5%"
+      pension: "será del 16% del ingreso base de cotización"
+      caja_compensacion: "El cuatro por ciento (4%) para proveer el pago de subsidio familiar"
+      icbf: "se aumentan al tres por ciento (3%) del valor de la nómina mensual"
+      sena: "El dos por ciento (2%) para el Servicio Nacional de Aprendizaje (SENA)"
+      arl: "cotizará por el valor correspondiente al valor inicial de la clase de riesgo"
+    urls_por_rubro:
+      salud: "http://www.secretariasenado.gov.co/senado/basedoc/ley_1122_2007.html"
+      pension: "https://normativa.colpensiones.gov.co/compilacion/docs/decreto_4982_2007.htm"
+      caja_compensacion: "https://normativa.colpensiones.gov.co/compilacion/docs/ley_0021_1982.htm"
+      icbf: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=74814"
+      sena: "https://normativa.colpensiones.gov.co/compilacion/docs/ley_0021_1982.htm"
+      arl: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=8803"
     valor:
       salud: 0.085
       pension: 0.12
@@ -332,22 +470,39 @@ exoneracion_art_114_1:
   - desde: 2017-01-01
     valor: {tope_smmlv: 10, rubros: [salud, icbf, sena]}
     fuente: "Estatuto Tributario, art. 114-1 (Ley 1819 de 2016, art. 65)"
-    estado: por_verificar
+    estado: verificado
+    norma: "Estatuto Tributario (Decreto 624 de 1989)"
+    articulo: "114-1, adicionado por la Ley 1819 de 2016, art. 65"
+    url: "http://www.secretariasenado.gov.co/senado/basedoc/estatuto_tributario_pr004.html"
+    consultado: 2026-11-16
+    cita_textual: "menos de diez (10) salarios mínimos mensuales legales vigentes"
     nota: >-
-      Texto del art. 114-1 no leído. El Concepto DIAN 7196 de 2025 (3-jun-2025, leído) transcribe el
-      antecedente (Ley 1607 de 2012, art. 25): personas jurídicas y asimiladas declarantes de renta,
-      y personas naturales que empleen dos o más trabajadores; trabajadores que devenguen
-      "individualmente considerados" menos de 10 SMMLV (la Ley 1607 decía "hasta"). El devengado se
-      mide con pagos salariales (incluye horas extra y recargos, que son salario).
-    url_revisar:
+      Texto del art. 114-1 leído: exonera de SENA, ICBF y salud a sociedades y personas jurídicas
+      declarantes de renta por los trabajadores que devenguen, "individualmente considerados",
+      menos de 10 SMMLV; también a personas naturales empleadoras, salvo las que "empleen menos de
+      dos trabajadores". Con 10 SMMLV o más se aporta completo (par. 1). La fecha 2017-01-01 es
+      convencional: la Ley 1819 se publicó en el Diario Oficial 50.101 de 29-dic-2016. El motor no
+      distingue el tipo de empleador (lo decide quien lo usa). No se leyeron las notas del editor
+      del artículo ni los parágrafos sobre entidades del régimen especial. El devengado se mide con
+      pagos salariales (Concepto DIAN 7196 de 2025, leído el 2026-11-11).
+    url_otras:
       - "https://normograma.dian.gov.co/dian/compilacion/docs/oficio_dian_7196_2025.htm"
-      - "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=79140"
 
 ibc_maximo_smmlv:
   - desde: 2003-01-29
     valor: 25
     fuente: "Ley 100 de 1993, art. 18 (mod. Ley 797 de 2003, art. 5)"
-    estado: por_verificar
+    estado: verificado
+    norma: "Ley 100 de 1993"
+    articulo: "18, modificado por la Ley 797 de 2003, art. 5 (vigencia: art. 24)"
+    url: "http://www.secretariasenado.gov.co/senado/basedoc/ley_0100_1993.html"
+    consultado: 2026-11-16
+    cita_textual: "El límite de la base de cotización será de veinticinco (25) salarios mínimos"
+    nota: >-
+      Ley 797 de 2003: Diario Oficial 45.079 de 29-ene-2003; "rige al momento de su publicación"
+      (art. 24), así que la fecha coincide. El mismo inciso permite que el Gobierno reglamente una
+      base de hasta 45 SMMLV para quienes devenguen más de 25 (no modelado). La compilación del
+      Senado advierte que la Ley 100 no incorpora la Ley 2381 de 2024 "hasta tanto entre en vigor".
 
 prestaciones_dias_por_anio:
   - desde: 1951-01-01
@@ -439,7 +594,10 @@ auxilio_transporte_tiempo_parcial:
     valor: proporcional_dias_laborados
     fuente: "Práctica y conceptos del Ministerio del Trabajo (no leídos)"
     estado: por_verificar
-    nota: "Decisión pendiente del autor: auxilio completo o proporcional a los días trabajados."
+    nota: >-
+      Decisión pendiente del autor: auxilio completo o proporcional a los días trabajados.
+      2026-11-16: no se encontró fuente oficial. El art. 1 de los Decretos 1573 de 2024 y 1470 de
+      2025 fija el auxilio mensual sin distinguir por jornada ni por días laborados. Supuesto S16.
 
 # Cotización por semanas para dependientes que laboran menos de 30 días en el mes con salario
 # mensual inferior a 1 SMMLV (Decreto 2616 de 2013, compilado en el Decreto 1072 de 2015).

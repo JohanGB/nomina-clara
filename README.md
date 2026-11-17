@@ -42,8 +42,8 @@ Un mismo turno se paga distinto según su fecha. El motor evalúa **cada minuto 
 - **Liquidación del contrato** (`liquidacion.py`, nuevo en v0.3): cesantías con la base del art. 253
   (último salario o promedio si varió), intereses del 12 %, prima del semestre, vacaciones compensadas
   (Ley 995 de 2005) e indemnización del art. 64 para contratos indefinidos, a término fijo y por obra.
-  Aparte, la indemnización moratoria del art. 65. Todas sus reglas están `verificado`, salvo el
-  salario mínimo y el auxilio de 2026 y la convención de 360 días.
+  Aparte, la indemnización moratoria del art. 65. Todas sus reglas están `verificado`, salvo la
+  convención de 360 días.
 
 ## Cómo ejecutarlo
 Requiere Python 3.10+ (probado en Linux; pensado para Windows 11: rutas con `pathlib`, archivos
@@ -83,6 +83,9 @@ flowchart LR
 ## Limitaciones
 
 - No todas las reglas están verificadas: las que no, quedan como `por_verificar` con el enlace exacto a su fuente.
+- Revisión del 16-nov-2026: de las 36 reglas, 8 siguen `por_verificar`. En 4 de ellas (inicio nocturno, recargo dominical y festivo,
+  tope de horas extra y festivo de la Virgen de Chiquinquirá) el texto oficial se leyó y **no coincide con la fecha de vigencia** del YAML;
+  el YAML no se ha cambiado hasta que el autor confirme. `docs/verificacion_reglas.md` conserva la verificación del 11-nov y aún no recoge esta revisión.
 - Versión 0.3: por ahora solo la vista del empleador; la del trabajador vendrá después.
 - No es asesoría jurídica. Cada cita enlaza el texto oficial; revíselo antes de un caso real.
 
